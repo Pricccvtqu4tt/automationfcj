@@ -3,6 +3,11 @@
 #### [功能简介](http://weixin.yoby123.cn/weui/)  
 weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的,接近100个新组件,最目前全网效果最全的.喜欢这个的童鞋们别吝啬去打小星星哦.
 #### [更新日志](http://weixin.yoby123.cn/weui/c/help1.html)
+
+- 2018-2-2 v4.8 新增默认单选复选文本文本域新样式
+- 2018-2-1 v4.7 新增支付场景的输入支付,选择支付,支付记录,订单
+- 2018-1-24 v4.6 新增弹出层自定义,按钮组,奖品独立框
+- 2018-1-6 v4.5 新增ajax分页两种,含后台PHP处理,新增选择层,修复已知bug,需要说明,使用底部导航设置高就不会产生页面不能点击
 - 2017-10-1 v4.3 修复已知bug
 - 2017-4-21 v4.2 修复微信中摇一摇不能再ios10+播放声音,其他声音播放也可此方法解决,新增仿微信左滑动删除
 - 2017-4-10 v4.1 修复zepto文件中jssdk相册bug,修复css中不兼容错误,修改重做jssdk演示
@@ -29,12 +34,13 @@ weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的
 - 2016-4-1 V1.0 weui是很棒的微信端UI,但是组件太少了,在微信开发很多组建都没有,所以根据此问题,收集网络上优秀的代码片段,组合开发出了这一套增强版weui-plus,目前还在不断增多组件,修复bug,目标是做最好的微信端移动端UI.
 
 #### 演示
-直接放到本地查看效果吧,以前的演示访问量过大导致服务器经常奔溃,所以不再提供演示
+感谢[ZeiyThink](https://github.com/ZeiyThink)提供
 
+[http://59.110.167.157/index.html](http://59.110.167.157/index.html)
 #### [赞助我](#)
-![](http://7xr193.com1.z0.glb.clouddn.com/weixin-v.jpg?time=1463681994)  
+![](https://we7.shanliwawa.top/wechat.jpg)  
 
-![](http://7xr193.com1.z0.glb.clouddn.com/zhi-v.jpg?time=1463681994)
+![](https://we7.shanliwawa.top/alipay.jpg)
 
 #### [使用方法](http://www.kancloud.cn/logoove/we7/249788)
 ~~~
@@ -55,7 +61,7 @@ Hello World
 </html>
 ~~~
 ####  [已使用公众号或移动网站](#)
-![](http://open.weixin.qq.com/qr/code/?username=gh_0c65a0b2e150)
+![](https://we7.shanliwawa.top/mx.jpg)
 
 #### [友情感谢](#)
 - weui<https://github.com/weui/weui>
