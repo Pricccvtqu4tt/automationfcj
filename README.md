@@ -35,7 +35,7 @@ weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的
 
 #### 演示
 
-[http://59.110.167.157/index.html](http://59.110.167.157/index.html)
+[演示效果iphone最佳](http://weui.shanliwawa.top/weui/index.html)
 #### [赞助我](#)
 ![](https://we7.shanliwawa.top/wechat.jpg)  
 
