@@ -4,6 +4,7 @@
 weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的,接近100个新组件,最目前全网效果最全的.喜欢这个的童鞋们别吝啬去打小星星哦.
 #### [更新日志](http://weixin.yoby123.cn/weui/c/help1.html)
 
+- 2018-4-8 v4.9 修复表格中复选无法选中,新增表格变色
 - 2018-2-2 v4.8 新增默认单选复选文本文本域新样式
 - 2018-2-1 v4.7 新增支付场景的输入支付,选择支付,支付记录,订单
 - 2018-1-24 v4.6 新增弹出层自定义,按钮组,奖品独立框
@@ -34,8 +35,9 @@ weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的
 - 2016-4-1 V1.0 weui是很棒的微信端UI,但是组件太少了,在微信开发很多组建都没有,所以根据此问题,收集网络上优秀的代码片段,组合开发出了这一套增强版weui-plus,目前还在不断增多组件,修复bug,目标是做最好的微信端移动端UI.
 
 #### 演示
+感谢[ZeiyThink](https://github.com/ZeiyThink)提供
 
-[演示效果iphone最佳](http://weui.shanliwawa.top/weui/index.html)
+[http://59.110.167.157/index.html](http://59.110.167.157/index.html)
 #### [赞助我](#)
 ![](https://we7.shanliwawa.top/wechat.jpg)  
 
@@ -61,3 +63,21 @@ Hello World
 ~~~
 ####  [已使用公众号或移动网站](#)
 ![](https://we7.shanliwawa.top/mx.jpg)
+
+#### [友情感谢](#)
+- weui<https://github.com/weui/weui>
+- Vux <https://github.com/airyland/vux>
+- jquery-weui <https://github.com/lihongxun945/jquery-weui>
+- frozen <https://github.com/frozenui/frozenui>
+- sui <https://github.com/sdc-alibaba/SUI-Mobile>
+- localResizeIMG <https://github.com/think2011/localResizeIMG>
+- jquery-qrcode <https://github.com/jeromeetienne/jquery-qrcode>
+- zepto <https://github.com/madrobby/zepto>
+- zyMedia <https://github.com/ireaderlab/zyMedia>
+- vconsole <https://github.com/WechatFE/vConsole>
+- PageSlider <https://github.com/weixin/PageSlider>
+- vue <https://github.com/vuejs/vue>
+- lazyimg <https://github.com/lzxb/lazy-load-img>
+- updown <https://github.com/ximan/dropload>
+- phpjs <https://github.com/chand3040/phpjs>
+- 以上排名不分先后,参考了他们代码或直接使用了,还有一些未找到出处不在此列出,谢谢.
