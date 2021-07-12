@@ -1,8 +1,8 @@
 # weui+
 ---
-#### [功能简介](http://weixin.yoby123.cn/weui/)  
+#### [功能简介](http://weui.shanliwawa.top)  
 weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的,接近100个新组件,最目前全网效果最全的.喜欢这个的童鞋们别吝啬去打小星星哦.
-#### [更新日志](http://weixin.yoby123.cn/weui/c/help1.html)
+#### 更新日志
 
 - 2018-4-8 v4.9 修复表格中复选无法选中,新增表格变色
 - 2018-2-2 v4.8 新增默认单选复选文本文本域新样式
@@ -35,9 +35,9 @@ weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的
 - 2016-4-1 V1.0 weui是很棒的微信端UI,但是组件太少了,在微信开发很多组建都没有,所以根据此问题,收集网络上优秀的代码片段,组合开发出了这一套增强版weui-plus,目前还在不断增多组件,修复bug,目标是做最好的微信端移动端UI.
 
 #### 演示
-感谢[ZeiyThink](https://github.com/ZeiyThink)提供
 
-[http://59.110.167.157/index.html](http://59.110.167.157/index.html)
+
+[http://weui.shanliwawa.top](http://weui.shanliwawa.top)
 #### [赞助我](#)
 ![](https://we7.shanliwawa.top/wechat.jpg)  
 
