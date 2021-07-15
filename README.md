@@ -1,9 +1,10 @@
 # weui+
 ---
-#### [功能简介](http://weui.shanliwawa.top)  
+#### 功能简介 
 weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的,接近100个新组件,最目前全网效果最全的.喜欢这个的童鞋们别吝啬去打小星星哦.
 #### 更新日志
-
+- 2018-5-24 v4.9.2 修复bug,新增图片横排1,2,3张图片效果,无任何css改变,所以无需更新css
+- 2018-5-7 V4.9.1 修复swipe的css的自动宽度和高度
 - 2018-4-8 v4.9 修复表格中复选无法选中,新增表格变色
 - 2018-2-2 v4.8 新增默认单选复选文本文本域新样式
 - 2018-2-1 v4.7 新增支付场景的输入支付,选择支付,支付记录,订单
@@ -36,14 +37,13 @@ weui+是Zepto1.2和weui.js,weui0.44/1.02等众多开源项目中,参考而成的
 
 #### 演示
 
-
 [http://weui.shanliwawa.top](http://weui.shanliwawa.top)
 #### [赞助我](#)
 ![](https://we7.shanliwawa.top/wechat.jpg)  
 
 ![](https://we7.shanliwawa.top/alipay.jpg)
 
-#### [使用方法](http://www.kancloud.cn/logoove/we7/249788)
+#### [使用方法http://www.kancloud.cn/logoove/we7/249788](http://www.kancloud.cn/logoove/we7/249788)
 ~~~
 <!doctype html>
 <html>
