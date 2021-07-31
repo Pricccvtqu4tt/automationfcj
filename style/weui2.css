@@ -43,7 +43,7 @@ a:active {
   display: table; }
 
 .cell {
-  display: cell-table; }
+  display:table-cell; }
 
 .tleft {
   text-align: left; }
@@ -3105,6 +3105,7 @@ border-top:0.0625rem dashed #DEDEDE;
   vertical-align: middle;
   position: relative;
    margin:10px 20px;
+  width:100%;
 }
 .weui-form-checkbox{
   -webkit-appearance: none;
