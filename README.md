@@ -40,7 +40,10 @@ weuiplus是Zepto1.2和weui1.13等众多开源项目中,参考而成的,接近100
 - 2016-4-1 V1.0 weui是很棒的微信端UI,但是组件太少了,在微信开发很多组建都没有,所以根据此问题,收集网络上优秀的代码片段,组合开发出了这一套增强版weui-plus,目前还在不断增多组件,修复bug,目标是做最好的微信端移动端UI.
 
 #### 演示
-<http://weui.shanliwawa.top>
+[v5beta1](http://weui.shanliwawa.top)
+
+[V4.9终极版](http://weui.shanliwawa.top/4.9)
+
 
 
 ####  赞助我 
