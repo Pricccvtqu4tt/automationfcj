@@ -47,9 +47,9 @@ weuiplus是Zepto1.2和weui1.13等众多开源项目中,参考而成的,接近100
 
 
 ####  赞助我 
-![微信](WE)
+![微信][WE]
 ![微信](http://weui.shanliwawa.top/images/wechat.jpg)
-![支付宝](AL)
+![支付宝][AL]
 ![支付宝](http://weui.shanliwawa.top/images/alipay.jpg)
 #### 开发手册<https://www.kancloud.cn/logoove/we7/678571>
 
