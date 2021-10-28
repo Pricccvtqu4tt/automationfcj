@@ -73,8 +73,8 @@ function array_values(a){var b=[],c="";if(a&&typeof a==="object"&&a.change_key_c
 function array_slice(f,i,d,b){var j="";if(Object.prototype.toString.call(f)!=="[object Array]"||(b&&i!==0)){var g=0,k={};for(j in f){g+=1;k[j]=f[j]}f=k;i=(i<0)?g+i:i;d=d===undefined?g:(d<0)?g+d-i:d;var h={};var a=false,e=-1,l=0,c=0;for(j in f){++e;if(l>=d){break}if(e==i){a=true}if(!a){continue}++l;if(this.is_int(j)&&!b){h[c++]=f[j]}else{h[j]=f[j]}}return h}if(d===undefined){return f.slice(i)}else{if(d>=0){return f.slice(i,i+d)}else{return f.slice(i,d)}}};
 function str_replace(t,c,m,l){var g=0,e=0,p="",k="",d=0,o=0,h=[].concat(t),a=[].concat(c),q=m,b=Object.prototype.toString.call(a)==="[object Array]",n=Object.prototype.toString.call(q)==="[object Array]";q=[].concat(q);if(typeof(t)==="object"&&typeof(c)==="string"){p=c;c=new Array();for(g=0;g<t.length;g+=1){c[g]=p}p="";a=[].concat(c);b=Object.prototype.toString.call(a)==="[object Array]"}if(l){this.window[l]=0}for(g=0,d=q.length;g<d;g++){if(q[g]===""){continue}for(e=0,o=h.length;e<o;e++){p=q[g]+"";k=b?(a[e]!==undefined?a[e]:""):a[0];q[g]=(p).split(h[e]).join(k);if(l){this.window[l]+=((p.split(h[e])).length-1)}}}return n?q:q[0]};
 function log(arr){console.log(arr);}
-
+function array_column(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",e=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"",i=[];if(empty(e))for(var t in r)i.push(r[t][n]);else for(var o in r)i[r[o][e]]=r[o][n];return i}
 export default {time,date,microtime,strtotime,htmlencode,htmldecode,isset,empty,intval,function_exists,in_array,range,strip_tags,rand,round,strtolower,strtoupper,floatval,ucfirst,base_convert,floor,ceil,utf8_decode,utf8_encode,urlencode,urldecode,base64_decode,base64_encode,preg_replace,strcut,implode,explode,json2str,str2json,
 is_eq,is_num,is_phone,is_qq,is_email,is_id,is_chinese,is_reg,is_tel,is_zipcode,is_english,is_url,is_int,is_float,is_http,
 strfind,date_eq,timeline,strtrim,md5,sort,ksort,sha1,uniqid,count,mktime,log,foreach,unset,array_merge,array_search,array_keys,array_values,array_slice,
-	str_replace}
+	str_replace,array_column}

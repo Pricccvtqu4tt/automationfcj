@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="../css/weui.css"/>
+    <link rel="stylesheet" href="../css/weuix.css"/>
+
+    <script src="../js/zepto.min.js"></script>
+    <script src="../js/zepto.weui.js"></script>
+	 <script src="../js/vconsole.min.js"></script>
+     <script>
+         $(function(){
+
+           
+         })
+
+      window.addEventListener('message', function(event) {
+            var loc = event.data;
+            var codes= localStorage.getItem('code');
+            if(codes==null){
+                localStorage.setItem('code',loc.adcode);
+                if(loc.district==null){
+                //根据定位
+                }else{
+                    localStorage.setItem('city',loc.district);
+                    $("#city").text(loc.district)
+                }
+            }else{
+                $("#city").text(localStorage.getItem('city'))
+            }
+            console.log(loc);
+        }, false);
+
+     </script>
+</head>
+
+<body ontouchstart>
+<iframe id="geoPage" frameborder=0 scrolling="no" src="//apis.map.qq.com/tools/geolocation?key=ACEBZ-FDXWP-WFRDV-VGS5Q-S2Q5K-HQBNA&referer=myapp&effect=zoom" allow="geolocation" style="display:none;"></iframe>
+
+    <div class="page-hd">
+        <h1 class="page-hd-title">
+            自动定位
+        </h1>
+        <p class="page-hd-desc">使用腾讯地图密钥,定位成功将城市信息和城市编号写入localStorage,详情信息查看console</p>
+    </div>
+
+<div id="city"></div>
+
+
+</body>
+</html>
