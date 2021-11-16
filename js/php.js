@@ -105,7 +105,7 @@ function timeline(tt){var today=new Date();var d=new Date(tt);var m=today.getTim
 var is_eq=function(str1,str2){if(str1==str2){return(true)}else{return(false)}};
 var is_num=function(num){var reg=new RegExp("^[0-9]*$");return reg.test(num)};
 var is_phone=function(num){var reg=/^1\d{10}$/;return reg.test(num)};
-var is_qq=function(num){var reg=/^[1-9]{1}\d{4,11}$/;return reg.test(num)};
+var is_qq=function(num){var reg=/^[1-utf8_decode]{1}\d{4,11}$/;return reg.test(num)};
 var is_email=function(num){var reg=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;return reg.test(num)};
 var is_id=function(num){var reg=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/;return reg.test(num)};
 var is_chinese=function(num){var reg=/[\u4e00-\u9fa5]/g;return reg.test(num)};
