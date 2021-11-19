@@ -93,6 +93,7 @@ function utf8_encode(r){if(null===r||void 0===r)return"";var e,a,t=r+"",n="",o=0
 function base_convert(n,t,r){return parseInt(n+"",0|t).toString(0|r)}
 function ceil(c){return Math.ceil(c)}
 function floor(o){return Math.floor(o)}
+function number_format(e,n,t,i){e=(e+"").replace(/[^0-9+\-Ee.]/g,"");var r=isFinite(+e)?+e:0,o=isFinite(+n)?Math.abs(n):0,a=void 0===i?",":i,d=void 0===t?".":t,u="";return u=(o?function(e,n){if(-1===(""+e).indexOf("e"))return+(Math.round(e+"e+"+n)+"e-"+n);var t=(""+e).split("e"),i="";return+t[1]+n>0&&(i="+"),(+(Math.round(+t[0]+"e"+i+(+t[1]+n))+"e-"+n)).toFixed(n)}(r,o).toString():""+Math.round(r)).split("."),u[0].length>3&&(u[0]=u[0].replace(/\B(?=(?:\d{3})+(?!\d))/g,a)),(u[1]||"").length<o&&(u[1]=u[1]||"",u[1]+=new Array(o-u[1].length+1).join("0")),u.join(d)}
 function mt_rand(r,e){var n=arguments.length;if(0===n)r=0,e=2147483647;else{if(1===n)throw new Error("Warning: mt_rand() expects exactly 2 parameters, 1 given");r=parseInt(r,10),e=parseInt(e,10)}return Math.floor(Math.random()*(e-r+1))+r}
 function rand(r,e){var n=arguments.length;if(0===n)r=0,e=2147483647;else if(1===n)throw new Error("Warning: rand() expects exactly 2 parameters, 1 given");return Math.floor(Math.random()*(e-r+1))+r}
 function round(a,r,_){var e,t,o,D;if(r|=0,e=Math.pow(10,r),a*=e,D=a>0|-(a<0),o=a%1==.5*D,t=Math.floor(a),o)switch(_){case"PHP_ROUND_HALF_DOWN":a=t+(D<0);break;case"PHP_ROUND_HALF_EVEN":a=t+t%2*D;break;case"PHP_ROUND_HALF_ODD":a=t+!(t%2);break;default:a=t+(D>0)}return(o?a:Math.round(a))/e}

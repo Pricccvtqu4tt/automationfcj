@@ -76,6 +76,7 @@ function rand(r,e){var n=arguments.length;if(0===n)r=0,e=2147483647;else if(1===
 function round(a,r,_){var e,t,o,D;if(r|=0,e=Math.pow(10,r),a*=e,D=a>0|-(a<0),o=a%1==.5*D,t=Math.floor(a),o)switch(_){case"PHP_ROUND_HALF_DOWN":a=t+(D<0);break;case"PHP_ROUND_HALF_EVEN":a=t+t%2*D;break;case"PHP_ROUND_HALF_ODD":a=t+!(t%2);break;default:a=t+(D>0)}return(o?a:Math.round(a))/e}
 function strcut(str,iMaxBytes,sSuffix){if(isNaN(iMaxBytes)){return str}if(strlen(str)<=iMaxBytes){return str}var i=0,bytes=0;for(;i<str.length&&bytes<iMaxBytes;++i,++bytes){if(str.charCodeAt(i)>255){++bytes}}sSuffix=sSuffix||"";return(bytes-iMaxBytes==1?str.substr(0,i-1):str.substr(0,i))+sSuffix};
 function strfind(string, find) {return !(string.indexOf(find)=== -1);};
+function number_format(e,n,t,i){e=(e+"").replace(/[^0-9+\-Ee.]/g,"");var r=isFinite(+e)?+e:0,o=isFinite(+n)?Math.abs(n):0,a=void 0===i?",":i,d=void 0===t?".":t,u="";return u=(o?function(e,n){if(-1===(""+e).indexOf("e"))return+(Math.round(e+"e+"+n)+"e-"+n);var t=(""+e).split("e"),i="";return+t[1]+n>0&&(i="+"),(+(Math.round(+t[0]+"e"+i+(+t[1]+n))+"e-"+n)).toFixed(n)}(r,o).toString():""+Math.round(r)).split("."),u[0].length>3&&(u[0]=u[0].replace(/\B(?=(?:\d{3})+(?!\d))/g,a)),(u[1]||"").length<o&&(u[1]=u[1]||"",u[1]+=new Array(o-u[1].length+1).join("0")),u.join(d)}
 function date_eq(strDate1,strDate2){var date1=new Date(strDate1.replace(/\-/g,"\/"));var date2=new Date(strDate2.replace(/\-/g,"\/"));if((date1-date2)>=0){return true;}else{return false;}}
 function timeline(tt){var today=new Date();var d=new Date(tt);var m=today.getTime()-d.getTime();if(m<=0){m=1000}if(m<60*1000){return Math.floor(m/1000)+"秒前"}else{if(m<60*60*1000){return Math.floor(m/(1000*60))+"分钟前"}else{if(m<60*60*1000*24){return Math.floor(m/(1000*60*60))+"小时前"}else{if(m<60*60*1000*24*7){return Math.floor(m/(1000*60*60*24))+"天前"}else{if(m<60*60*1000*24*7*56){return Math.floor(m/(1000*60*60*24*7))+"周前"}else{return Math.floor(m/(1000*60*60*24*7*52))+"年前"}}}}}};
 //验证函数
@@ -104,6 +105,6 @@ md5,sha1,log,dump,trim,ltrim,rtrim,strtrim,
 str_replace,strip_tags,strlen,strtolower,strtoupper,ucfirst,implode,explode,str2arr,
 json2str,str2json,htmlencode,htmldecode,foreach,preg_match,preg_replace,
 utf8_decode,utf8_encode,urlencode,urldecode,base64_decode,base64_encode,
-rand,round,,base_convert,floor,ceil,mt_rand,
+rand,round,,base_convert,floor,ceil,mt_rand,number_format,
 strcut,strfind,date_eq,timeline,
 is_eq,is_num,is_phone,is_qq,is_email,is_id,is_chinese,is_reg,is_tel,is_zipcode,is_english,is_url,in_int,in_float,is_http}
