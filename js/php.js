@@ -126,7 +126,12 @@ var is_http=function(url){if(url.indexOf("http://")===-1&&url.indexOf("https://"
 	function isfollowqr(a){var b=document.createElement("div");b.style="position: fixed; left:0; top:0; background: rgba(0,0,0,0.7); filter:alpha(opacity=70); width: 100%; height:100%; z-index: 100;";b.innerHTML='<p style="text-align:center; margin-top:20%;padding:0 5%;"><img style="max-width:100%;" src="'+a+'" alt="请您关注后浏览"></p><p style="text-align:center;line-height:20px; color:#fff;margin:0px;padding:0px;">长按二维码选择识别二维码,关注本公众号</p>';document.body.appendChild(b)};
 	var browser={version:function(){var u=navigator.userAgent.toLowerCase(),app=navigator.appVersion;return{ie:u.indexOf("trident")>-1,opera:u.indexOf("tresto")>-1,webKit:u.indexOf("applewebkit")>-1,firefox:u.indexOf("gecko")>-1&&u.indexOf("khtml")==-1,mobile:!!u.match(/applewebkit.*mobile.*/),ios:!!u.match(/\(i[^;]+;( u;)? cpu.+mac os x/),android:u.indexOf("android")>-1||u.indexOf("linux")>-1,iphone:u.indexOf("iphone")>-1,ipad:u.indexOf("ipad")>-1,weixin:u.match(/micromessenger/i)=="micromessenger"}}(),language:(navigator.browserLanguage||navigator.language).toLowerCase(),wifi:!function(t){var e=!0,n=t.navigator.userAgent,i=t.navigator.connection;if(/MicroMessenger/.test(n))if(/NetType/.test(n)){var o=n.match(/NetType\/(\S)+/)[0].replace("NetType/","");o&&"WIFI"!=o&&(e=!1)}else document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.invoke("getNetworkType",{},function(t){"network_type:wifi"!=t.err_msg&&(e=!1)})});else if(i){var a=i.type;"wifi"!=a&&"2"!=a&&"unknown"!=a&&(e=!1)}t.wifi=e}(window)};
 function fn(){var o="",t=[],n={};for(o in this.window)try{if("function"==typeof this.window[o])n[o]||(n[o]=1,t.push(o));else if("object"===_typeof(this.window[o]))for(var i in this.window[o])"function"==typeof this.window[i]&&this.window[i]&&!n[i]&&(n[i]=1,t.push(i))}catch(o){}return t}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};
-
+//微擎
+function tomedia(t){return strfind(t,"http")||strfind(t,"https")?t:window.location.protocol+"//"+window.location.host+"/attachment/"+t};
+//最新
+function sex(sex=0){const arr=['未知','男','女'];return arr[sex];}
+function hidebank(s="6217995510035399947"){return s.replace(/^(\d{8})\d+(\d{4})$/,"$1*******$2");}
+function hidephone(s="18291447788"){return s.replace(/^(\d{3})\d+(\d{4})$/, "$1****$2");}
 
 
 
