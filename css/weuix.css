@@ -2466,16 +2466,19 @@ input.b-orange {
     padding: 20px 10px;
     width: 33.33%;
     box-sizing: border-box;
-    text-decoration: none
+    text-decoration: none;
+     display: inline-block;
 }
 
 .grids-small .grid {
     width: 25%;
-    padding: 5px 4px
+    padding: 5px 4px;
+     display: inline-block;
 }
 .grids-mini .grid {
     width: 20%;
-    padding: 5px 4px
+    padding: 5px 4px;
+   display: inline-block;
 }
 
 .grid:before {
