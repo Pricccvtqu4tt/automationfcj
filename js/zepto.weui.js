@@ -883,7 +883,7 @@
     }
 
     var toastDefaults = $.toast.prototype.defaults = {
-        duration: 2500
+        duration: 1000
     }
 
 }($);

@@ -1562,7 +1562,7 @@ body {
 
 .weui-picker-container, .weui-picker-overlay {
     position: fixed;
-    bottom:7%;
+    bottom:0;
     left: 0;
     right: 0;
     width: 100%;
