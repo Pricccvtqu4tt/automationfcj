@@ -11,7 +11,57 @@
     <script src="../js/zepto.weui.js"></script>
     <script src="../js/php.js"></script>
     <style>
-        ::-webkit-scrollbar{display:none}table{width:100%;height:auto;border-bottom:1px solid #e6e7f1;float:left}table tr:nth-child(2n) td{background:#f6f7fa}table tr td{line-height:20px;padding:5px;border-top:1px solid #e6e7f1;text-align:center;background:#fff;color:#505050;font-size:12px}table tr .dark{border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7}table tr th{font-weight:400;line-height:20px;padding:10px 0;text-align:center;color:#edeef1;background:#798299;font-size:12px}table tr .noborder{border-left:none!important;border-right:none!important}table tr td font{color:#e13b6d;font-size:12px}
+        ::-webkit-scrollbar {
+            display: none
+        }
+
+        table {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #e6e7f1;
+            float: left
+        }
+
+        table tr:nth-child(2n) td {
+            background: #f6f7fa
+        }
+
+        table tr td {
+            line-height: 20px;
+            padding: 5px;
+            border-top: 1px solid #e6e7f1;
+            text-align: center;
+            background: #fff;
+            color: #505050;
+            font-size: 12px
+        }
+
+        table tr .dark {
+            border-left: 1px solid #e7e7e7;
+            border-right: 1px solid #e7e7e7
+        }
+        table td,table th{
+            border: none;
+        }
+        table tr th {
+            font-weight: 400;
+            line-height:40px;
+            padding: 0;
+            text-align: center;
+            color: #edeef1;
+            background: #798299;
+            font-size: 12px
+        }
+
+        table tr .noborder {
+            border-left: none !important;
+            border-right: none !important
+        }
+
+        table tr td font {
+            color: #e13b6d;
+            font-size: 12px
+        }
     </style>
     <script>
         function table_fixer(ele,tableHeight,fixedLeftLength){if(fixedLeftLength==undefined){fixedLeftLength=0;}
