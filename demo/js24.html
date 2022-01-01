@@ -156,6 +156,39 @@
             $(function(){
             table_fixer("#table",'',1);//固定id/高度,可为空/固定列数
             })
+
+
+        function goto(){
+            $.actions({
+                title: "选择操作",
+                onClose: function() {
+                    console.log("close");
+                },
+                actions: [
+                    {
+                        text: "发布",
+                        className: "color-primary",
+                        onClick: function() {
+                            $.alert("发布成功");
+                        }
+                    },
+                    {
+                        text: "编辑",
+                        className: "color-warning",
+                        onClick: function() {
+                            $.alert("你选择了“编辑”");
+                        }
+                    },
+                    {
+                        text: "删除",
+                        className: 'color-danger',
+                        onClick: function() {
+                            $.alert("你选择了“删除”");
+                        }
+                    }
+                ]
+            });
+        }
             </script>
      
 </head>
@@ -198,8 +231,8 @@
     </div>
        <script>
         var html='';
-        for(var i=1;i<20;i++){
-        html+=` <tr onclick="location.href='https://www.baidu.com'">
+        for(var i=1;i<15;i++){
+        html+=` <tr onclick="goto()">
             <td>国药一致<br><span class="f-gray f14 ">000028</span></td>
             <td><span class="f-red">44.9</span></td>
             <td><label class="label f-white bg-red padding5">-1.08%</label></td>
@@ -208,7 +241,7 @@
             <td>15.72</td>
             <td>5.36%</td>
             <td>5.36%</td>
-        </tr><tr onclick="location.href='https://www.baidu.com'">
+        </tr><tr onclick="goto()">
             <td>国药一致<br><span class="f-gray f14 ">000028</span></td>
             <td><span class="f-green">44.9</span></td>
             <td><label class="label f-white bg-green padding5">+1.08%</label></td>
