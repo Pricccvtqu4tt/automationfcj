@@ -237,84 +237,385 @@ function log(arr){console.log(arr);}
  */
 function dump(r,n){var  echo=function(){var o=Array.prototype.slice.call(arguments);return console.log(o.join(" "))};var t="",o=function(r,n){for(var t="",o=0;o<r;o++)t+=n;return t},e=function(r,n,t,c){n>0&&n++;var i=o(t*n,c),u=o(t*(n+1),c),a="";if("object"==typeof r&&null!==r&&r.constructor){a+="Array\n"+i+"(\n";for(var f in r)"[object Array]"===Object.prototype.toString.call(r[f])?(a+=u,a+="[",a+=f,a+="] => ",a+=e(r[f],n+1,t,c)):(a+=u,a+="[",a+=f,a+="] => ",a+=r[f],a+="\n");a+=i+")\n"}else a=null===r||void 0===r?"":r.toString();return a};return t=e(r,0,4," "),!0!==n?(echo(t),!0):t}
 
-//字符处理
+/**
+ *
+ * @param 字符串
+ * @param 要去除的字符,默认为空格
+ * @returns 去除两边空格
+ */
 function trim(r,n){var t=[" ","\n","\r","\t","\f","\v"," "," "," "," "," "," "," "," "," "," "," "," ","​","\u2028","\u2029","　"].join(""),e=0,i=0;for(r+="",n&&(t=(n+"").replace(/([[\]().?\/*{}+$^:])/g,"$1")),e=r.length,i=0;i<e;i++)if(-1===t.indexOf(r.charAt(i))){r=r.substring(i);break}for(e=r.length,i=e-1;i>=0;i--)if(-1===t.indexOf(r.charAt(i))){r=r.substring(0,i+1);break}return-1===t.indexOf(r.charAt(0))?r:""}
+
+/**
+ *
+ * @param 字符串
+ * @param 要去除的字符
+ * @returns 去除右边空格
+ */
 function rtrim(e,r){return r=r?(r+"").replace(/([[\]().?\/*{}+$^:])/g,"\\$1"):" \\s ",(e+"").replace(new RegExp("["+r+"]+$","g"),"")}
+/**
+ *
+ * @param 字符串
+ * @param 要去除的字符
+ * @returns 去除左边空格
+ */
 function ltrim(e,r){return r=r?(r+"").replace(/([[\]().?\/*{}+$^:])/g,"$1"):" \\s ",(e+"").replace(new RegExp("^["+r+"]+","g"),"")}
+/**
+ *
+ * @param 字符串
+ * @returns 删除多个空格只保留一个
+ */
 function strtrim(a){return a.replace(/\s+/g," ");};
 
+/**
+ *str_replace("a","我","来自于a")
+ * @param 要查找的字符
+ * @param 要替换的字符
+ * @param 字符串
+ * @returns 字符串替换
+ */
 function str_replace(t,o,e,c){var r=0,l=0,n="",a="",i=0,p=0,u=[].concat(t),f=[].concat(o),g=e,y="[object Array]"===Object.prototype.toString.call(f),b="[object Array]"===Object.prototype.toString.call(g);g=[].concat(g);var j="undefined"!=typeof window?window:global;j.$locutus=j.$locutus||{};var v=j.$locutus;if(v.php=v.php||{},"object"==typeof t&&"string"==typeof o){for(n=o,o=[],r=0;r<t.length;r+=1)o[r]=n;n="",f=[].concat(o),y="[object Array]"===Object.prototype.toString.call(f)}for(void 0!==c&&(c.value=0),r=0,i=g.length;r<i;r++)if(""!==g[r])for(l=0,p=u.length;l<p;l++)n=g[r]+"",a=y?void 0!==f[l]?f[l]:"":f[0],g[r]=n.split(u[l]).join(a),void 0!==c&&(c.value+=n.split(u[l]).length-1);return b?g:g[0]}
-function strip_tags(input,allowed){allowed=(((allowed||"")+"").toLowerCase().match(/<[a-z][a-z0-9]*>/g)||[]).join("");var tags=/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,commentsAndPhpTags=/<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;return input.replace(commentsAndPhpTags,"").replace(tags,function($0,$1){return allowed.indexOf("<"+$1.toLowerCase()+">")>-1?$0:""})};
-function strlen(t){var n=t+"";return n.length}
 
+/**
+ *
+ * @param 字符串
+ * @param 保留的标签
+ * @returns 去除html标签
+ */
+function strip_tags(input,allowed){allowed=(((allowed||"")+"").toLowerCase().match(/<[a-z][a-z0-9]*>/g)||[]).join("");var tags=/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,commentsAndPhpTags=/<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;return input.replace(commentsAndPhpTags,"").replace(tags,function($0,$1){return allowed.indexOf("<"+$1.toLowerCase()+">")>-1?$0:""})};
+
+/**
+ *
+ * @param 字符串
+ * @returns 计算字符串长度
+ */
+function strlen(t){var n=t+"";return n.length}
+/**
+ * @param 字符串
+ * @returns 转换大写
+ */
 function strtolower(t){return(t+"").toLowerCase()}
+/**
+ * @param 字符串
+ * @returns 转换小写
+ */
 function strtoupper(t){return(t+"").toUpperCase()}
+/**
+ * @param 字符串
+ * @returns 转换首字母大写
+ */
 function ucfirst(t){return t+="",t.charAt(0).toUpperCase()+t.substr(1)}
+
+/**
+ * var1 =1;  var2 = 'vanvs'; c=compact('var1', 'var2');必须全局变量
+ * @returns 变量组成数组
+ */
 function compact(){var t="undefined"!=typeof window?window:global,o={};return function n(r){var e=0,c=r.length,i="";for(e=0;e<c;e++)i=r[e],"[object Array]"===Object.prototype.toString.call(i)?n(i):void 0!==t[i]&&(o[i]=t[i]);return!0}(arguments),o}
 
+/**
+ * explode(" ","我 哎 你")
+ * @param 分割符号
+ * @param 字符串
+ * @returns 字符串转换成数组
+ */
 function explode(e,t,n){if(arguments.length<2||void 0===e||void 0===t)return null;if(""===e||!1===e||null===e)return!1;if("function"==typeof e||"object"==typeof e||"function"==typeof t||"object"==typeof t)return{0:""};!0===e&&(e="1"),e+="",t+="";var o=t.split(e);return void 0===n?o:(0===n&&(n=1),n>0?n>=o.length?o:o.slice(0,n-1).concat([o.slice(n-1).join(e)]):-n>=o.length?[]:(o.splice(o.length+n),o))}
+
+/**
+ *implode(",",[1,2,3])
+ * @param 分隔符
+ * @param 数组
+ * @returns 数组转换字符串
+ */
 function implode(t,r){var e="",o="",n="";if(1===arguments.length&&(r=t,t=""),"object"==typeof r){if("[object Array]"===Object.prototype.toString.call(r))return r.join(t);for(e in r)o+=n+r[e],n=t;return o}return r}
-	function str2arr(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[1,2],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:",";return is_array(r)?implode(e,r):explode(e,r)}
 
+/**
+ *str2arr('1-2-3','-') str2arr([1,2,3],'-')
+ * @returns 字符串与数组相互转换
+ */
+function str2arr(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[1,2],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:",";return is_array(r)?implode(e,r):explode(e,r)}
 
-	function json2str(oJson){if(typeof(oJson)==typeof(false)){return oJson}if(oJson==null){return"null"}if(typeof(oJson)==typeof(0)){return oJson.toString()}if(typeof(oJson)==typeof("")||oJson instanceof String){oJson=oJson.toString();oJson=oJson.replace(/\\r\\n/,"\\\\r\\\\n");oJson=oJson.replace(/\\n/,"\\\\n");oJson=oJson.replace(/\\"/,'\\\\"');return'"'+oJson+'"'}if(oJson instanceof Array){var strRet="[";for(var i=0;i<oJson.length;i++){if(strRet.length>1){strRet+=","}strRet+=json2str(oJson[i])}strRet+="]";return strRet}if(typeof(oJson)==typeof({})){var strRet="{";for(var p in oJson){if(strRet.length>1){strRet+=","}strRet+='"'+p.toString()+'":'+json2str(oJson[p])}strRet+="}";return strRet}};
-	function str2json(str){return JSON.stringify(str)};
+/**
+ * json2str({a:1,b:"测试"})
+ * @param json对象
+ * @returns json对象转换字符串
+ */
+function json2str(str){return JSON.stringify(str);};
 
-function htmlspecialchars_decode(e,E){var T=0,_=0,r=!1;"undefined"==typeof E&&(E=2),e=e.toString().replace(/&lt;/g,"<").replace(/&gt;/g,">");var t={ENT_NOQUOTES:0,ENT_HTML_QUOTE_SINGLE:1,ENT_HTML_QUOTE_DOUBLE:2,ENT_COMPAT:2,ENT_QUOTES:3,ENT_IGNORE:4};if(0===E&&(r=!0),"number"!=typeof E){for(E=[].concat(E),_=0;_<E.length;_++)0===t[E[_]]?r=!0:t[E[_]]&&(T|=t[E[_]]);E=T}return E&t.ENT_HTML_QUOTE_SINGLE&&(e=e.replace(/&#0*39;/g,"'")),r||(e=e.replace(/&quot;/g,'"')),e=e.replace(/&amp;/g,"&")}
-function htmlspecialchars(e,E,T,_){var r=0,t=0,a=!1;("undefined"==typeof E||null===E)&&(E=2),e=e.toString(),_!==!1&&(e=e.replace(/&/g,"&amp;")),e=e.replace(/</g,"&lt;").replace(/>/g,"&gt;");var N={ENT_NOQUOTES:0,ENT_HTML_QUOTE_SINGLE:1,ENT_HTML_QUOTE_DOUBLE:2,ENT_COMPAT:2,ENT_QUOTES:3,ENT_IGNORE:4};if(0===E&&(a=!0),"number"!=typeof E){for(E=[].concat(E),t=0;t<E.length;t++)0===N[E[t]]?a=!0:N[E[t]]&&(r|=N[E[t]]);E=r}return E&N.ENT_HTML_QUOTE_SINGLE&&(e=e.replace(/'/g,"&#039;")),a||(e=e.replace(/"/g,"&quot;")),e};
-	function htmlencode(sStr){return htmlspecialchars(sStr);};
-	function htmldecode(sStr){return htmlspecialchars_decode(sStr)};
-
+/**
+ * str2json("{\"a\":1,\"b\":\"测试\"}")
+ * @param str
+ * @returns json字符串转换对象
+ */
+function str2json(str){return JSON.parse(str);};
+/**
+ * @param html字符串
+ * @returns html转换实体
+ */
+function htmlencode(sStr){ var htmlspecialchars = function(e,E,T,_){var r=0,t=0,a=!1;("undefined"==typeof E||null===E)&&(E=2),e=e.toString(),_!==!1&&(e=e.replace(/&/g,"&amp;")),e=e.replace(/</g,"&lt;").replace(/>/g,"&gt;");var N={ENT_NOQUOTES:0,ENT_HTML_QUOTE_SINGLE:1,ENT_HTML_QUOTE_DOUBLE:2,ENT_COMPAT:2,ENT_QUOTES:3,ENT_IGNORE:4};if(0===E&&(a=!0),"number"!=typeof E){for(E=[].concat(E),t=0;t<E.length;t++)0===N[E[t]]?a=!0:N[E[t]]&&(r|=N[E[t]]);E=r}return E&N.ENT_HTML_QUOTE_SINGLE&&(e=e.replace(/'/g,"&#039;")),a||(e=e.replace(/"/g,"&quot;")),e};return htmlspecialchars(sStr);};
+/**
+ * @param html字符串
+ * @returns html实体还原
+ */
+function htmldecode(sStr){var htmlspecialchars_decode= function(e,E){var T=0,_=0,r=!1;"undefined"==typeof E&&(E=2),e=e.toString().replace(/&lt;/g,"<").replace(/&gt;/g,">");var t={ENT_NOQUOTES:0,ENT_HTML_QUOTE_SINGLE:1,ENT_HTML_QUOTE_DOUBLE:2,ENT_COMPAT:2,ENT_QUOTES:3,ENT_IGNORE:4};if(0===E&&(r=!0),"number"!=typeof E){for(E=[].concat(E),_=0;_<E.length;_++)0===t[E[_]]?r=!0:t[E[_]]&&(T|=t[E[_]]);E=T}return E&t.ENT_HTML_QUOTE_SINGLE&&(e=e.replace(/&#0*39;/g,"'")),r||(e=e.replace(/&quot;/g,'"')),e=e.replace(/&amp;/g,"&")};return htmlspecialchars_decode(sStr)};
+/**
+ *$_GET('qq')
+ * @param 变量字符
+ * @returns 获取url变量值
+ */
 function $_GET(c){var e=c+"=",b=window.location.href,h=b.indexOf("?"),b=b.slice(h+1),a=b.split("&"),d=0,f="",g=a.length;for(d=0;d<g;d++){var f=a[d];if(f.indexOf(e)===0){return decodeURIComponent(f.slice(e.length).replace(/\+/g,"%20"))}}return null};
+/**
+ * $_COOKIE('a')
+ * @param 名称
+ * @returns 读取cookie
+ */
 function $_COOKIE(b){var d=0,g="",f=b+"=",a=document.cookie.split(";"),e=a.length;for(d=0;d<e;d++){g=a[d].replace(/^ */,"");if(g.indexOf(f)===0){return decodeURIComponent(g.slice(f.length).replace(/\+/g,"%20"))}}return null};
+/**
+ *foreach([1,2,3,4],function(k,v){log(v);})
+ * @param 数组
+ * @param 处理方法函数
+ * @returns 循环输出
+ */
 function foreach(a,d){var b,c,e;if(a&&typeof a==="object"&&a.change_key_case){return a.foreach(d)}if(typeof this.Iterator!=="undefined"){var c=this.Iterator(a);if(d.length===1){for(e in c){d(e[1])}}else{for(e in c){d(e[0],e[1])}}}else{if(d.length===1){for(b in a){if(a.hasOwnProperty(b)){d(a[b])}}}else{for(b in a){if(a.hasOwnProperty(b)){d(b,a[b])}}}}};
 
-
-//正则
+/**
+ * preg_match('a','abc') true
+ * @param 正则
+ * @param 匹配字符
+ * @returns 正则匹配是否存在
+ */
 function preg_match(e,t){return new RegExp(e).test(t)}
+/**
+ * preg_replace(/N/,"32","分数是N分")
+ * @param 正则
+ * @param 替换的内容
+ * @param 字符串
+ * @param 次数
+ * @returns 正则替换
+ */
 function preg_replace(pattern,replacement,subject,limit){if(typeof limit==='undefined')limit=-1;if(subject.match(eval(pattern))){if(limit==-1){return subject.replace(eval(pattern+'g'),replacement);}else{for(x=0;x<limit;x++){subject=subject.replace(eval(pattern),replacement);}return subject;}}else{return subject;}}
-
-
-//url处理
+/**
+ * @param base64编码
+ * @returns base64还原
+ */
 function base64_decode(n){var r=function(n){return decodeURIComponent(n.split("").map(function(n){return"%"+("00"+n.charCodeAt(0).toString(16)).slice(-2)}).join(""))};if("undefined"==typeof window)return new Buffer(n,"base64").toString("utf-8");if(void 0!==window.atob)return r(window.atob(n));var e,t,o,i,d,f,a,c,u="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",h=0,w=0,C="",g=[];if(!n)return n;n+="";do{i=u.indexOf(n.charAt(h++)),d=u.indexOf(n.charAt(h++)),f=u.indexOf(n.charAt(h++)),a=u.indexOf(n.charAt(h++)),c=i<<18|d<<12|f<<6|a,e=c>>16&255,t=c>>8&255,o=255&c,g[w++]=64===f?String.fromCharCode(e):64===a?String.fromCharCode(e,t):String.fromCharCode(e,t,o)}while(h<n.length);return C=g.join(""),r(C.replace(/\0+$/,""))}
+/**
+ * @param 字符串
+ * @returns base64编码
+ */
 function base64_encode(e){var r=function(e){return encodeURIComponent(e).replace(/%([0-9A-F]{2})/g,function(e,r){return String.fromCharCode("0x"+r)})};if("undefined"==typeof window)return new Buffer(e).toString("base64");if(void 0!==window.btoa)return window.btoa(r(e));var n,t,o,i,a,c,d,f,h="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",u=0,w=0,A="",l=[];if(!e)return e;e=r(e);do{n=e.charCodeAt(u++),t=e.charCodeAt(u++),o=e.charCodeAt(u++),f=n<<16|t<<8|o,i=f>>18&63,a=f>>12&63,c=f>>6&63,d=63&f,l[w++]=h.charAt(i)+h.charAt(a)+h.charAt(c)+h.charAt(d)}while(u<e.length);A=l.join("");var C=e.length%3;return(C?A.slice(0,C-3):A)+"===".slice(C||3)}
+/**
+*  @param 字符串
+ * @returns URL编码
+ */
 function urlencode(e){return e+="",encodeURIComponent(e).replace(/!/g,"%21").replace(/'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A").replace(/~/g,"%7E").replace(/%20/g,"+")}
+/**
+ *
+ * @param 字符串
+ * @returns  URL解码
+ */
 function urldecode(e){return decodeURIComponent((e+"").replace(/%(?![\da-f]{2})/gi,function(){return"%25"}).replace(/\+/g,"%20"))}
+/**
+ * @returns unicode解码表情中文
+ */
 function unicode_decode(e){return e=e.replace(/\\/g,"%"),unescape(e)}
+/**
+ * @param 字符串
+ * @param 是否中文也编码
+ * @returns unicode编码中文表情
+ */
 function unicode_encode(n){if(1==(arguments.length>1&&void 0!==arguments[1]&&arguments[1])){for(var r=[],t=0;t<n.length;t++)r[t]=("00"+n.charCodeAt(t).toString(16)).slice(-4);return"\\u"+r.join("\\u")}var e=function(n){for(var r=[],t=0;t<n.length;t++)r[t]=("00"+n.charCodeAt(t).toString(16)).slice(-4);return"\\u"+r.join("\\u")},u=/[\ud800-\udbff][\udc00-\udfff]/g;return n=n.replace(u,function(n){return 2===n.length?e(n):n})}
+/**
+ * @param 字符串 emoji_encode("😋😘我们")
+ * @returns 编码emoji
+ */
 function emoji_encode(e){var n=/[\ud800-\udbff][\udc00-\udfff]/g;return e=e.replace(n,function(e){var n,r;return 2===e.length?(n=e.charCodeAt(0),r=e.charCodeAt(1),"&#"+(1024*(n-55296)+65536+r-56320)+";"):e})}
+/**
+ * emoji_decode("&#128523;&#128536;我们")
+ * @param 字符串
+ * @returns 解码emoji仅js中需要
+ */
 function emoji_decode(e){var n=/\&#.*?;/g;return e.replace(n,function(e){var n,r,t;return 9==e.length?(t=parseInt(e.match(/[0-9]+/g)),n=Math.floor((t-65536)/1024)+55296,r=(t-65536)%1024+56320,unescape("%u"+n.toString(16)+"%u"+r.toString(16))):e})}
-//数学
+/**
+ *base_convert(1234,10,2)10进制转2进制
+ * @param 数字
+ * @param 原进制
+ * @param 新进制
+ * @returns 任意进制转换
+ */
 function base_convert(n,t,r){return parseInt(n+"",0|t).toString(0|r)}
+/**
+ * 证书+1 负数取本身 -3.23 得-3
+ * @param 数字
+ * @returns 进1法取整
+ */
 function ceil(c){return Math.ceil(c)}
+/**
+ * 正数取整 负数+1取整 -3.2得4
+ * @param 数字
+ * @returns 舍去取整
+ */
 function floor(o){return Math.floor(o)}
+/**
+ *number_format('150.456', 2, '.', ',')
+ * @param 数字
+ * @param 保留小数位数
+ * @param 小数点显示符号
+ * @param 千分位符号
+ * @returns 格式化数字
+ */
 function number_format(e,n,t,i){e=(e+"").replace(/[^0-9+\-Ee.]/g,"");var r=isFinite(+e)?+e:0,o=isFinite(+n)?Math.abs(n):0,a=void 0===i?",":i,d=void 0===t?".":t,u="";return u=(o?function(e,n){if(-1===(""+e).indexOf("e"))return+(Math.round(e+"e+"+n)+"e-"+n);var t=(""+e).split("e"),i="";return+t[1]+n>0&&(i="+"),(+(Math.round(+t[0]+"e"+i+(+t[1]+n))+"e-"+n)).toFixed(n)}(r,o).toString():""+Math.round(r)).split("."),u[0].length>3&&(u[0]=u[0].replace(/\B(?=(?:\d{3})+(?!\d))/g,a)),(u[1]||"").length<o&&(u[1]=u[1]||"",u[1]+=new Array(o-u[1].length+1).join("0")),u.join(d)}
+/**
+ * 可以不要参数
+ * @param 最小
+ * @param 最大
+ * @returns 生成更好随机数
+ */
 function mt_rand(r,e){var n=arguments.length;if(0===n)r=0,e=2147483647;else{if(1===n)throw new Error("Warning: mt_rand() expects exactly 2 parameters, 1 given");r=parseInt(r,10),e=parseInt(e,10)}return Math.floor(Math.random()*(e-r+1))+r}
+/**
+ * 可以不要参数
+ * @param 最小
+ * @param 最大
+ * @returns 生成随机数
+ */
 function rand(r,e){var n=arguments.length;if(0===n)r=0,e=2147483647;else if(1===n)throw new Error("Warning: rand() expects exactly 2 parameters, 1 given");return Math.floor(Math.random()*(e-r+1))+r}
+/**
+ *
+ * @param 数字
+ * @param 保留位数
+ * @returns 四舍五入
+ */
 function round(a,r,_){var e,t,o,D;if(r|=0,e=Math.pow(10,r),a*=e,D=a>0|-(a<0),o=a%1==.5*D,t=Math.floor(a),o)switch(_){case"PHP_ROUND_HALF_DOWN":a=t+(D<0);break;case"PHP_ROUND_HALF_EVEN":a=t+t%2*D;break;case"PHP_ROUND_HALF_ODD":a=t+!(t%2);break;default:a=t+(D>0)}return(o?a:Math.round(a))/e}
-//非dom可用在vue
+/**
+ *strcut("我爱中国人",4,"...")
+ * @param 字符串
+ * @param 长度中文汉字算两个
+ * @param 显示符号
+ * @returns 字符串截取
+ */
 function strcut(str,iMaxBytes,sSuffix){if(isNaN(iMaxBytes)){return str}if(strlen(str)<=iMaxBytes){return str}var i=0,bytes=0;for(;i<str.length&&bytes<iMaxBytes;++i,++bytes){if(str.charCodeAt(i)>255){++bytes}}sSuffix=sSuffix||"";return(bytes-iMaxBytes==1?str.substr(0,i-1):str.substr(0,i))+sSuffix};
+/**
+ * @param 字符串
+ * @param 子字符串
+ * @returns 查找字符串
+ */
 function strfind(string, find) {return !(string.indexOf(find)=== -1);};
+/**
+ * date_eq('2019-10-22','2019-10-21') true
+ * @param 前日期
+ * @param 后日期
+ * @returns 判断日期是否前边大于后边
+ */
 function date_eq(strDate1,strDate2){var date1=new Date(strDate1.replace(/\-/g,"\/"));var date2=new Date(strDate2.replace(/\-/g,"\/"));if((date1-date2)>=0){return true;}else{return false;}}
-function timeline(tt){var today=new Date();var d=new Date(tt);var m=today.getTime()-d.getTime();if(m<=0){m=1000}if(m<60*1000){return Math.floor(m/1000)+"秒前"}else{if(m<60*60*1000){return Math.floor(m/(1000*60))+"分钟前"}else{if(m<60*60*1000*24){return Math.floor(m/(1000*60*60))+"小时前"}else{if(m<60*60*1000*24*7){return Math.floor(m/(1000*60*60*24))+"天前"}else{if(m<60*60*1000*24*7*56){return Math.floor(m/(1000*60*60*24*7))+"周前"}else{return Math.floor(m/(1000*60*60*24*7*52))+"年前"}}}}}};
-//验证函数
+/**
+ * @param 时间戳10位
+ * @returns 格式化时间
+ */
+function timeline(tt){var today=new Date();var d=new Date(tt*1000);var m=today.getTime()-d.getTime();if(m<=0){m=1000}if(m<60*1000){return Math.floor(m/1000)+"秒前"}else{if(m<60*60*1000){return Math.floor(m/(1000*60))+"分钟前"}else{if(m<60*60*1000*24){return Math.floor(m/(1000*60*60))+"小时前"}else{if(m<60*60*1000*24*7){return Math.floor(m/(1000*60*60*24))+"天前"}else{if(m<60*60*1000*24*7*56){return Math.floor(m/(1000*60*60*24*7))+"周前"}else{return Math.floor(m/(1000*60*60*24*7*52))+"年前"}}}}}};
+/**
+ * @param str1
+ * @param str2
+ * @returns 判断两个字符串是否相等
+ */
 var is_eq=function(str1,str2){if(str1==str2){return(true)}else{return(false)}};
+/**
+ *
+ * @param num
+ * @returns 判断是否数字
+ */
 var is_num=function(num){var reg=new RegExp("^[0-9]*$");return reg.test(num)};
+/**
+ *
+ * @param num
+ * @returns 判断是否手机号
+ */
 var is_phone=function(num){var reg=/^1\d{10}$/;return reg.test(num)};
+/**
+ *
+ * @param num
+ * @returns 判断是否QQ
+ */
 var is_qq=function(num){var reg=/^[1-utf8_decode]{1}\d{4,11}$/;return reg.test(num)};
+/**
+ *
+ * @param num
+ * @returns 判断是否邮箱
+ */
 var is_email=function(num){var reg=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;return reg.test(num)};
+/**
+ *
+ * @param num
+ * @returns 判断是否身份证
+ */
 var is_id=function(num){var reg=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/;return reg.test(num)};
+/**
+ *
+ * @param num
+ * @returns 判断是否中文
+ */
 var is_chinese=function(num){var reg=/[\u4e00-\u9fa5]/g;return reg.test(num)};
+/**
+ * @param num 数字字母组成,下划钱字母开头
+ * @returns 判断是否符合注册用户名
+ */
 var is_reg=function(num){var reg=/^([a-zA-z_]{1})([\w]*)$/g;return reg.test(num)};
+/**
+ *
+ * @param str
+ * @returns 判断是否电话
+ */
 var is_tel=function(str){var reg=/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;return reg.test(str)};
+/**
+ *
+ * @param strIP
+ * @returns 判断是否是IP
+ */
 var is_ip=function(strIP){if(isNull(strIP)){return false}var re=/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/g;if(re.test(strIP)){if(RegExp.$1<256&&RegExp.$2<256&&RegExp.$3<256&&RegExp.$4<256){return true}}return false};
+/**
+ *
+ * @param str
+ * @returns 判断是否邮编
+ */
 var is_zipcode=function(str){var reg=/^(\d){6}$/;return reg.test(str)};
+/**
+ *
+ * @param str
+ * @returns 判断是否英文
+ */
 var is_english=function(str){var reg=/^[A-Za-z]+$/;return reg.test(str)};
-var is_url=function(str){var reg=/^http:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;return reg.test(str)};
+/**
+ *
+ * @param str
+ * @returns 判断是否是URL
+ */
+var is_url=function(url){ var strRegex =/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;var re = new RegExp(strRegex);return re.test(url);};
+/**
+ *
+ * @param 整数
+ * @param 最小
+ * @param 最大
+ * @returns 判断是否在两个整数内
+ */
 var in_int=function(n,iMin,iMax){if(!isFinite(n)){return false}if(!/^[+-]?\d+$/.test(n)){return false}if(iMin!=undefined&&parseInt(n)<parseInt(iMin)){return false}if(iMax!=undefined&&parseInt(n)>parseInt(iMax)){return false}return true};
+/**
+ *
+ * @param 浮点数
+ * @param 最小
+ * @param 最大
+ * @returns 判断是否在两个浮点数之内
+ */
 var in_float=function(n,fMin,fMax){if(!isFinite(n)){return false}if(fMin!=undefined&&parseFloat(n)<parseFloat(fMin)){return false}if(fMax!=undefined&&parseFloat(n)>parseFloat(fMax)){return false}return true};
+/**
+ *
+ * @param url
+ * @returns 判断是否http
+ */
 var is_http=function(url){if(url.indexOf("http://")===-1&&url.indexOf("https://")===-1){return false}return true};
 
+/**
+ *
+ * @param 数字
+ * @returns 判断是否金额
+ */
+function is_money(n){return!!/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(n)}
 //dom
 	function msg(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"info",i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";"close"==e?(""!=i&&alert(i),document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.call("closeWindow")})):"gopage"==e?(i=""==i?"":i,document.write("<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=0'><div style='font-size:16px;margin:30px auto;text-align:center;'>"+i+"</div>"),""!=t&&(location.href=t)):"goto"==e?(""==i||alert(i),""==t||(location.href=t)):"info"!=e&&"success"!=e&&"warn"!=e||(document.write("<meta charset='utf-8'><title>提示</title><meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0'><link rel='stylesheet'  href='https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css'><div class='weui_msg'><div class='weui_icon_area'><i class='weui_icon_"+e+" weui_icon_msg'></i></div><div class='weui_text_area'><h4 class='weui_msg_title'>"+i+"</h4></div></div>"),document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.call("hideOptionMenu")}))}
 	function tpl(a,d){var c=function(l){var j,h=[],g=[];for(j in l){h.push(j);g.push(l[j])}return(new Function(h,c.$)).apply(l,g)};if(!c.$){var f=a.split("<%");c.$="var $=''";for(var b=0;b<f.length;b++){var e=f[b].split("%>");if(b!=0){c.$+="="==e[0].charAt(0)?"+("+e[0].substr(1)+")":";"+e[0].replace(/\r\n/g,"")+"$=$"}c.$+="+'"+e[e.length-1].replace(/\'/g,"\\'").replace(/\r\n/g,"\\n").replace(/\n/g,"\\n").replace(/\r/g,"\\n")+"'"}c.$+=";return $;"}return d?c(d):c};
@@ -326,7 +627,7 @@ function fn(){var o="",t=[],n={};for(o in this.window)try{if("function"==typeof 
 function sex(sex=0){const arr=['未知','男','女'];return arr[sex];}
 function hidebank(s="6217995510035399947"){return s.replace(/^(\d{8})\d+(\d{4})$/,"$1*******$2");}
 function hidephone(s="18291447788"){return s.replace(/^(\d{3})\d+(\d{4})$/, "$1****$2");}
-function is_money(n){return!!/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(n)}
+
 function addcss(e){var t=document.createElement("style"),d=document.head||document.getElementsByTagName("head")[0];if(t.type="text/css",t.styleSheet){var a=function(){try{t.styleSheet.cssText=e}catch(e){}};t.styleSheet.disabled?setTimeout(a,10):a()}else{var s=document.createTextNode(e);t.appendChild(s)}d.appendChild(t)}
 function addjs(t){var e=document.createElement("script");e.type="text/javascript";try{e.appendChild(document.createTextNode(t))}catch(d){e.text=t}document.head.appendChild(e)}
 function loadjs(e,a){var t=document.createElement("script");t.src=e,t.onload=function(){var e=t.readyState&&"complete"!=t.readyState&&"loaded"!=t.readyState;a&&a(!e)},document.head.appendChild(t)}
