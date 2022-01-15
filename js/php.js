@@ -109,6 +109,25 @@ function count(r,t){var n,o=0;if(null===r||void 0===r)return 0;if(r.constructor!
 function in_array(r,n,i){var f="";if(!i){for(f in n)if(n[f]==r)return!0}else for(f in n)if(n[f]===r)return!0;return!1}
 
 /**
+ *
+ * @param 数组或数组对象
+ * @returns 对象转换数组会丢掉key
+ */
+function obj2arr(array) {
+    if(is_object(array)) {
+        var arr = []
+        for (var i in array) {
+            arr.push(array[i]);
+        }
+        array=arr;
+    } if(is_array(array)) {
+        foreach(array,function(key,value){
+         array[key] = obj2arr(value);
+        })
+    }
+    return array;
+}
+/**
  * range('a','z') range(1,10) range('A','Z')
  * @param 开始
  * @param 结束
