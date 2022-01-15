@@ -55,6 +55,20 @@ function array_keys(r,n,a){var e=void 0!==n,o=[],t=!!a,i=!0,y="";for(y in r)r.ha
 function array_values(r){var n=[],a="";for(a in r)n[n.length]=r[a];return n}
 
 /**
+ * 取一个是字符串,多个是数组,取出的是key
+ * @param 数组
+ * @param 取出单元个数
+ * @returns 随机取出数组单元key
+ */
+function array_rand(r,a){var n=Object.keys(r);if(a=void 0===a||null===a?1:+a,isNaN(a)||a<1||a>n.length)return null;for(var l=n.length-1;l>0;l--){var t=Math.floor(Math.random()*(l+1)),e=n[t];n[t]=n[l],n[l]=e}return 1===a?n[0]:n.slice(0,a)}
+
+/**
+ *array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'})
+ * @param 数组
+ * @returns 去除数组重复
+ */
+function array_unique(r){var n="",t={},u="";for(n in r)r.hasOwnProperty(n)&&(u=r[n],!1===function(r,n){var t="";for(t in n)if(n.hasOwnProperty(t)&&n[t]+""==r+"")return t;return!1}(u,t)&&(t[n]=u));return t}
+/**
  * array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
  * @param 数组
  * @param 开始位置
@@ -168,6 +182,18 @@ function is_object(t){return"[object Array]"!==Object.prototype.toString.call(t)
  */
 function function_exists(n){var o="undefined"!=typeof window?window:global;return"string"==typeof n&&(n=o[n]),"function"==typeof n}
 
+/**
+ *
+ * @param 数组或对象
+ * @returns 序列化
+ */
+function serialize(r){var e,t,a,n="",o=0,i=function(r){var e,t,a,n,o=typeof r;if("object"===o&&!r)return"null";if("object"===o){if(!r.constructor)return"object";a=r.constructor.toString(),e=a.match(/(\w+)\(/),e&&(a=e[1].toLowerCase()),n=["boolean","number","string","array"];for(t in n)if(a==n[t]){o=n[t];break}}return o},c=i(r);switch(c){case"function":e="";break;case"boolean":e="b:"+(r?"1":"0");break;case"number":e=(Math.round(r)==r?"i":"d")+":"+r;break;case"string":e="s:"+function(r){var e=0,t=0,a=r.length,n="";for(t=0;t<a;t++)n=r.charCodeAt(t),e+=n<128?1:n<2048?2:3;return e}(r)+':"'+r+'"';break;case"array":case"object":e="a";for(t in r)if(r.hasOwnProperty(t)){if("function"===i(r[t]))continue;a=t.match(/^[0-9]+$/)?parseInt(t,10):t,n+=this.serialize(a)+this.serialize(r[t]),o++}e+=":"+o+":{"+n+"}";break;case"undefined":default:e="N"}return"object"!==c&&"array"!==c&&(e+=";"),e}
+/**
+ *
+ * @param 字符串
+ * @returns 解码序列化
+ */
+function unserialize(r){var e=this,n=function(r){var e=r.charCodeAt(0);return e<128?0:e<2048?1:2};return error=function(r,n,a,t){throw new e.window[r](n,a,t)},read_until=function(r,e,n){for(var a=2,t=[],i=r.slice(e,e+1);i!=n;)a+e>r.length&&error("Error","Invalid"),t.push(i),i=r.slice(e+(a-1),e+a),a+=1;return[t.length,t.join("")]},read_chrs=function(r,e,a){var t,i,u;for(u=[],t=0;t<a;t++)i=r.slice(e+(t-1),e+t),u.push(i),a-=n(i);return[u.length,u.join("")]},_unserialize=function(r,e){var n,a,t,i,u,s,o,l,c,d,f,h,_,p,w,b,k,g,v=0,I=function(r){return r};switch(e||(e=0),n=r.slice(e,e+1).toLowerCase(),a=e+2,n){case"i":I=function(r){return parseInt(r,10)},c=read_until(r,a,";"),v=c[0],l=c[1],a+=v+1;break;case"b":I=function(r){return 0!==parseInt(r,10)},c=read_until(r,a,";"),v=c[0],l=c[1],a+=v+1;break;case"d":I=function(r){return parseFloat(r)},c=read_until(r,a,";"),v=c[0],l=c[1],a+=v+1;break;case"n":l=null;break;case"s":d=read_until(r,a,":"),v=d[0],f=d[1],a+=v+2,c=read_chrs(r,a+1,parseInt(f,10)),v=c[0],l=c[1],a+=v+2,v!=parseInt(f,10)&&v!=l.length&&error("SyntaxError","String length mismatch");break;case"a":for(l={},t=read_until(r,a,":"),v=t[0],i=t[1],a+=v+2,s=parseInt(i,10),u=!0,h=0;h<s;h++)p=_unserialize(r,a),w=p[1],_=p[2],a+=w,b=_unserialize(r,a),k=b[1],g=b[2],a+=k,_!==h&&(u=!1),l[_]=g;if(u){for(o=new Array(s),h=0;h<s;h++)o[h]=l[h];l=o}a+=1;break;default:error("SyntaxError","Unknown / Unhandled data type(s): "+n)}return[n,a-e,I(l)]},_unserialize(r+"",0)[2]}
 /**
  * uniqid('',true)长度23 默认13
  * @param 前缀
@@ -616,24 +642,99 @@ var is_http=function(url){if(url.indexOf("http://")===-1&&url.indexOf("https://"
  * @returns 判断是否金额
  */
 function is_money(n){return!!/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(n)}
-//dom
-	function msg(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"info",i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";"close"==e?(""!=i&&alert(i),document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.call("closeWindow")})):"gopage"==e?(i=""==i?"":i,document.write("<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=0'><div style='font-size:16px;margin:30px auto;text-align:center;'>"+i+"</div>"),""!=t&&(location.href=t)):"goto"==e?(""==i||alert(i),""==t||(location.href=t)):"info"!=e&&"success"!=e&&"warn"!=e||(document.write("<meta charset='utf-8'><title>提示</title><meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0'><link rel='stylesheet'  href='https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css'><div class='weui_msg'><div class='weui_icon_area'><i class='weui_icon_"+e+" weui_icon_msg'></i></div><div class='weui_text_area'><h4 class='weui_msg_title'>"+i+"</h4></div></div>"),document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.call("hideOptionMenu")}))}
-	function tpl(a,d){var c=function(l){var j,h=[],g=[];for(j in l){h.push(j);g.push(l[j])}return(new Function(h,c.$)).apply(l,g)};if(!c.$){var f=a.split("<%");c.$="var $=''";for(var b=0;b<f.length;b++){var e=f[b].split("%>");if(b!=0){c.$+="="==e[0].charAt(0)?"+("+e[0].substr(1)+")":";"+e[0].replace(/\r\n/g,"")+"$=$"}c.$+="+'"+e[e.length-1].replace(/\'/g,"\\'").replace(/\r\n/g,"\\n").replace(/\n/g,"\\n").replace(/\r/g,"\\n")+"'"}c.$+=";return $;"}return d?c(d):c};
 
-	var browser={version:function(){var u=navigator.userAgent.toLowerCase(),app=navigator.appVersion;return{ie:u.indexOf("trident")>-1,opera:u.indexOf("tresto")>-1,webKit:u.indexOf("applewebkit")>-1,firefox:u.indexOf("gecko")>-1&&u.indexOf("khtml")==-1,mobile:!!u.match(/applewebkit.*mobile.*/),ios:!!u.match(/\(i[^;]+;( u;)? cpu.+mac os x/),android:u.indexOf("android")>-1||u.indexOf("linux")>-1,iphone:u.indexOf("iphone")>-1,ipad:u.indexOf("ipad")>-1,weixin:u.match(/micromessenger/i)=="micromessenger"}}(),language:(navigator.browserLanguage||navigator.language).toLowerCase(),wifi:!function(t){var e=!0,n=t.navigator.userAgent,i=t.navigator.connection;if(/MicroMessenger/.test(n))if(/NetType/.test(n)){var o=n.match(/NetType\/(\S)+/)[0].replace("NetType/","");o&&"WIFI"!=o&&(e=!1)}else document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.invoke("getNetworkType",{},function(t){"network_type:wifi"!=t.err_msg&&(e=!1)})});else if(i){var a=i.type;"wifi"!=a&&"2"!=a&&"unknown"!=a&&(e=!1)}t.wifi=e}(window)};
+/**
+ * 类型 info success warn 没有url close自动关闭 goto跳转弹出 gopage跳转页面
+ * 提示语
+ * URL
+ * @returns 弹出框
+ */
+function msg(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"info",i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";"close"==e?(""!=i&&alert(i),document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.call("closeWindow")})):"gopage"==e?(i=""==i?"":i,document.write("<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=0'><div style='font-size:16px;margin:30px auto;text-align:center;'>"+i+"</div>"),""!=t&&(location.href=t)):"goto"==e?(""==i||alert(i),""==t||(location.href=t)):"info"!=e&&"success"!=e&&"warn"!=e||(document.write("<meta charset='utf-8'><title>提示</title><meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0'><link rel='stylesheet'  href='https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css'><div class='weui_msg'><div class='weui_icon_area'><i class='weui_icon_"+e+" weui_icon_msg'></i></div><div class='weui_text_area'><h4 class='weui_msg_title'>"+i+"</h4></div></div>"),document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.call("hideOptionMenu")}))}
+/**
+ *
+ * @param 获取id
+ * @param json数据
+ * @returns 模板解析函数
+ */
+function tpl(a,d){var c=function(l){var j,h=[],g=[];for(j in l){h.push(j);g.push(l[j])}return(new Function(h,c.$)).apply(l,g)};if(!c.$){var f=a.split("<%");c.$="var $=''";for(var b=0;b<f.length;b++){var e=f[b].split("%>");if(b!=0){c.$+="="==e[0].charAt(0)?"+("+e[0].substr(1)+")":";"+e[0].replace(/\r\n/g,"")+"$=$"}c.$+="+'"+e[e.length-1].replace(/\'/g,"\\'").replace(/\r\n/g,"\\n").replace(/\n/g,"\\n").replace(/\r/g,"\\n")+"'"}c.$+=";return $;"}return d?c(d):c};
+/**
+ *
+ * @returns 全局浏览器变量
+ */
+var browser={version:function(){var u=navigator.userAgent.toLowerCase(),app=navigator.appVersion;return{ie:u.indexOf("trident")>-1,opera:u.indexOf("tresto")>-1,webKit:u.indexOf("applewebkit")>-1,firefox:u.indexOf("gecko")>-1&&u.indexOf("khtml")==-1,mobile:!!u.match(/applewebkit.*mobile.*/),ios:!!u.match(/\(i[^;]+;( u;)? cpu.+mac os x/),android:u.indexOf("android")>-1||u.indexOf("linux")>-1,iphone:u.indexOf("iphone")>-1,ipad:u.indexOf("ipad")>-1,weixin:u.match(/micromessenger/i)=="micromessenger"}}(),language:(navigator.browserLanguage||navigator.language).toLowerCase(),wifi:!function(t){var e=!0,n=t.navigator.userAgent,i=t.navigator.connection;if(/MicroMessenger/.test(n))if(/NetType/.test(n)){var o=n.match(/NetType\/(\S)+/)[0].replace("NetType/","");o&&"WIFI"!=o&&(e=!1)}else document.addEventListener("WeixinJSBridgeReady",function(){WeixinJSBridge.invoke("getNetworkType",{},function(t){"network_type:wifi"!=t.err_msg&&(e=!1)})});else if(i){var a=i.type;"wifi"!=a&&"2"!=a&&"unknown"!=a&&(e=!1)}t.wifi=e}(window)};
+
+/**
+ *
+ * @returns 显示全部函数
+ */
 function fn(){var o="",t=[],n={};for(o in this.window)try{if("function"==typeof this.window[o])n[o]||(n[o]=1,t.push(o));else if("object"===_typeof(this.window[o]))for(var i in this.window[o])"function"==typeof this.window[i]&&this.window[i]&&!n[i]&&(n[i]=1,t.push(i))}catch(o){}return t}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};
-!function(e){var t={};e.localStorage?t.support=!0:t.support=!1,t.set=function(e,o,i){if(this.support){if("string"!=typeof e)return;if(i){if("number"!=typeof i)return;i=parseInt(i)+(new Date).getTime()}else i=null;var r={value:JSON.stringify(o),time:i};localStorage.setItem(e,JSON.stringify(r))}else t.setCookie(e,o,i)},t.get=function(e){if(this.support){var o=JSON.parse(localStorage.getItem(e));return o?o.time&&o.time<(new Date).getTime()?(localStorage.removeItem(e),null):JSON.parse(o.value):null}t.getCookie(e)},t.remove=function(e){this.support?localStorage.removeItem(e):t.removeCookie(e)},t.clear=function(){this.support?localStorage.clear():t.clearCookie()},t.setCookie=function(e,t,o){if("string"==typeof e){"number"!=typeof o&&(o=31536e6);var i=new Date;i.setTime(i.getTime()+o),document.cookie=e+"="+t+"; expires="+i.toGMTString()}},t.getCookie=function(e){for(var t,o=document.cookie.split(";"),i=0;i<o.length;i++)if(e==o[i].split("=")[0]){t=o[i].split("=")[1];break}return t},t.removeCookie=function(e){document.cookie=e+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"},t.clearCookie=function(){for(var e=document.cookie.split(";"),t=0;t<e.length;t++)document.cookie=e[t].split("=")[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"},e.sl=t}(window);
-//最新
+/**
+ * ls.set("text", "this is string",3*1000);
+ * ls.get("text")
+ * ls.remove("a")
+ * ls.clear()
+ * @returns localStorage带过期
+ */
+!function(e){var t={};e.localStorage?t.support=!0:t.support=!1,t.set=function(e,o,i){if(this.support){if("string"!=typeof e)return;if(i){if("number"!=typeof i)return;i=parseInt(i)+(new Date).getTime()}else i=null;var r={value:JSON.stringify(o),time:i};localStorage.setItem(e,JSON.stringify(r))}else t.setCookie(e,o,i)},t.get=function(e){if(this.support){var o=JSON.parse(localStorage.getItem(e));return o?o.time&&o.time<(new Date).getTime()?(localStorage.removeItem(e),null):JSON.parse(o.value):null}t.getCookie(e)},t.remove=function(e){this.support?localStorage.removeItem(e):t.removeCookie(e)},t.clear=function(){this.support?localStorage.clear():t.clearCookie()},t.setCookie=function(e,t,o){if("string"==typeof e){"number"!=typeof o&&(o=31536e6);var i=new Date;i.setTime(i.getTime()+o),document.cookie=e+"="+t+"; expires="+i.toGMTString()}},t.getCookie=function(e){for(var t,o=document.cookie.split(";"),i=0;i<o.length;i++)if(e==o[i].split("=")[0]){t=o[i].split("=")[1];break}return t},t.removeCookie=function(e){document.cookie=e+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"},t.clearCookie=function(){for(var e=document.cookie.split(";"),t=0;t<e.length;t++)document.cookie=e[t].split("=")[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"},e.ls=t}(window);
+/**
+ *
+ * @param 0未知 1男 2女
+ * @returns 返回性别名称
+ */
 function sex(sex=0){const arr=['未知','男','女'];return arr[sex];}
+/**
+ * @param 字符
+ * @returns 隐藏银行号码
+ */
 function hidebank(s="6217995510035399947"){return s.replace(/^(\d{8})\d+(\d{4})$/,"$1*******$2");}
+/**
+ * @param 字符串
+ * @returns 隐藏手机号中间四位
+ */
 function hidephone(s="18291447788"){return s.replace(/^(\d{3})\d+(\d{4})$/, "$1****$2");}
-
+/**
+ *
+ * @param css代码
+ * @returns 添加css代码
+ */
 function addcss(e){var t=document.createElement("style"),d=document.head||document.getElementsByTagName("head")[0];if(t.type="text/css",t.styleSheet){var a=function(){try{t.styleSheet.cssText=e}catch(e){}};t.styleSheet.disabled?setTimeout(a,10):a()}else{var s=document.createTextNode(e);t.appendChild(s)}d.appendChild(t)}
+/**
+ * @param js代码
+ * @returns 添加js代码
+ */
 function addjs(t){var e=document.createElement("script");e.type="text/javascript";try{e.appendChild(document.createTextNode(t))}catch(d){e.text=t}document.head.appendChild(e)}
+
+/**
+ *
+ * @param js文件路径
+ * @param 回调函数
+ * @returns 加载js支持回调
+ */
 function loadjs(e,a){var t=document.createElement("script");t.src=e,t.onload=function(){var e=t.readyState&&"complete"!=t.readyState&&"loaded"!=t.readyState;a&&a(!e)},document.head.appendChild(t)}
+
+/**
+ *
+ * @param css路径
+ * @param 回调函数
+ * @returns 加载css支持回调
+ */
 function loadcss(e,n){var t=document.createElement("link");t.rel="stylesheet",t.type="text/css",t.onerror=function(){n(!1)},t.onload=function(){n(!0)},t.href=e,document.head.appendChild(t)}
+
+/**
+ *
+ * @returns 当前域名主机
+ */
 function gethost(){return window.location.protocol+"//"+window.location.host;}
-function isfollowqr(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"http://open.weixin.qq.com/qr/code?username=shirenshiwu",o=!(arguments.length>1&&void 0!==arguments[1])||arguments[1],i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"关注公众号",d=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"感谢关注",n=document.createElement("div");n.classList.add("weui-model");var t=1==o?'<span class="close" onclick="$(\'.weui-model\').remove();"></span>':"",l=1==o?"onclick=\"$('.weui-model').remove();\"":"";n.innerHTML='<div class="model-mask"  '+l+'></div><div class="model-main">'+t+'<div class="model-head"><div class="m-title"><p>'+i+"</p><p>"+d+'</p></div></div><div class="model-body"><div class="follow">\n    <img src="'+e+'">\n    <p>长按识别图中二维码</p>\n</div></div></div>',document.body.appendChild(n),addcss(".weui-model{width:100%;height:100%;position:fixed;z-index:9999;top:0;left:0;display:block;text-align:center}\n.model-mask{width:100%;height:100%;background-color:#000;opacity:.7;cursor:pointer}\n.model-main{width:80%;min-height:2.5em;background-color:#fff;color:#333;z-index:99999;border-radius:.2em;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}\n.model-main .close{position:absolute;top:-45px;right:-10px;width:35px;height:35px;padding:5px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAC70lEQVRIS52WTajVVRTFf6usaCKCQWRNmokNFGtUmNgzyMrvED/AgZEmiOCgqIZNkiwzFNICDcHPUWCkA0mLQM1IFCRRQdRUzIImKRK2ZMn5P87z3f+997UnF+45/732x9p7HdHFbD8MvATMA54FxgFjgRvAFeAo8A3wg6Q7ba7UdmB7EfAp8AewC/ge+B34C3gCeBp4Hci9W8AaSfs6+RsGYjuR7gWSxTuSEm2r2X4AWAx8CJwGFkr6p/5gCIjtCcABYKOkdd2c339m+xFgDzAemCHpQnNnEMT2k8DxEv2OkQA0d23H3xfA1PRQ0s2c3QOx/SBwEvhE0tf/B6ACiq+fgHOSltYgy4HpkhZUl8ekuZJO9AK1nW8PVt8+HpAQQ9KPsj0KuAgMSDpTXZwDbC//p4wdzfZK4GNgsqQ4vme2VwNvSpoYkJeB9yQNdGhm0t3UBmR7GfB5qcKx+vtChNB9ICBp1FlJn3UK1XaANhZHgxnZXgJsKQEMAaiyyaCeD8gvwHJJv3YpycLiMLU/bvsNYFuhaprcVso1wNyAXAUmScpkt5rtBijz8y7wqqRWgNKXBLMuILeBRyX91weLvgTeAj6Q9FEf96cA+wNyrTAjv90yaUq0NkQBZko63OObmSFOQDIHb0vq2Lwq7a1NiWy/BuzuBWR7BbAsIF8BZyRl4w4z27OAncArdQ/6AbKdwG4FZD6wStK0DnMSgOyx2ZKy6odYNyDbDxVZWBKQ0cAl4EVJpyqOp2nZyKn9MIDqXlO60Huw5GVQN0TomgUZSkb9nm9YViY2q+JIHyx6AfhZ0r+lh9Gi88B6SRsakKSWYfxW0vu9nPY6t51BnQQ8F1mu9eSpRFP2WBbjiK3oSVZQ6D5R0vU4uV8ZnwG+Azb3M2x1FJUyJoMo42/NeZvGR0YjpyPV+LNF4/+uA+j2WsnjILOTlDN4YdjlltdKVlICyr1h1gpSsSQ6M7e8u/IUegz4s7y7svqzzg81zOoEchflLmD7O1+wYQAAAABJRU5ErkJggg==) no-repeat center center;background-size:auto;background-size:25px 25px}\n.model-main .model-head{font-size:20px;padding:.6em 0;background:-webkit-gradient(linear,left top,left bottom,from(#fd7a71),to(#e5484c));background:-webkit-linear-gradient(top,#fd7a71,#e5484c);background:linear-gradient(to bottom,#fd7a71,#e5484c);border-radius:.1em .1em 0 0;position:relative}\n.model-main .model-head p{color:#fff}.model-main .model-head p:nth-child(1){font-size:20px;line-height:1.5;font-weight:bold}\n.model-main .model-head p:nth-child(2){font-size:16px;line-height:1.5}.model-main .model-body{padding:.5em;-webkit-box-sizing:border-box;box-sizing:border-box;min-height:5em;width:100%}\n.model-main .model-body img{margin-top:.1em;width:70%}.model-main .model-body p{color:#333;line-height:1.6;font-size:16px}")}
+
+/**
+ * isfollowqr(null,true,"标题","内容")
+ * 图片绝对路径
+ * 是否显示关闭 默认true
+ * 标题
+ * 描述
+ * @returns 关注二维码扫
+ */
+function isfollowqr(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"http://open.weixin.qq.com/qr/code?username=blyd99",o=!(arguments.length>1&&void 0!==arguments[1])||arguments[1],i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"关注公众号",d=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"感谢关注",n=document.createElement("div");n.classList.add("weui-model");var t=1==o?'<span class="close" onclick="$(\'.weui-model\').remove();"></span>':"",l=1==o?"onclick=\"$('.weui-model').remove();\"":"";n.innerHTML='<div class="model-mask"  '+l+'></div><div class="model-main">'+t+'<div class="model-head"><div class="m-title"><p>'+i+"</p><p>"+d+'</p></div></div><div class="model-body"><div class="follow">\n    <img src="'+e+'">\n    <p>长按识别图中二维码</p>\n</div></div></div>',document.body.appendChild(n),addcss(".weui-model{width:100%;height:100%;position:fixed;z-index:9999;top:0;left:0;display:block;text-align:center}\n.model-mask{width:100%;height:100%;background-color:#000;opacity:.7;cursor:pointer}\n.model-main{width:80%;min-height:2.5em;background-color:#fff;color:#333;z-index:99999;border-radius:.2em;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}\n.model-main .close{position:absolute;top:-45px;right:-10px;width:35px;height:35px;padding:5px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAC70lEQVRIS52WTajVVRTFf6usaCKCQWRNmokNFGtUmNgzyMrvED/AgZEmiOCgqIZNkiwzFNICDcHPUWCkA0mLQM1IFCRRQdRUzIImKRK2ZMn5P87z3f+997UnF+45/732x9p7HdHFbD8MvATMA54FxgFjgRvAFeAo8A3wg6Q7ba7UdmB7EfAp8AewC/ge+B34C3gCeBp4Hci9W8AaSfs6+RsGYjuR7gWSxTuSEm2r2X4AWAx8CJwGFkr6p/5gCIjtCcABYKOkdd2c339m+xFgDzAemCHpQnNnEMT2k8DxEv2OkQA0d23H3xfA1PRQ0s2c3QOx/SBwEvhE0tf/B6ACiq+fgHOSltYgy4HpkhZUl8ekuZJO9AK1nW8PVt8+HpAQQ9KPsj0KuAgMSDpTXZwDbC//p4wdzfZK4GNgsqQ4vme2VwNvSpoYkJeB9yQNdGhm0t3UBmR7GfB5qcKx+vtChNB9ICBp1FlJn3UK1XaANhZHgxnZXgJsKQEMAaiyyaCeD8gvwHJJv3YpycLiMLU/bvsNYFuhaprcVso1wNyAXAUmScpkt5rtBijz8y7wqqRWgNKXBLMuILeBRyX91weLvgTeAj6Q9FEf96cA+wNyrTAjv90yaUq0NkQBZko63OObmSFOQDIHb0vq2Lwq7a1NiWy/BuzuBWR7BbAsIF8BZyRl4w4z27OAncArdQ/6AbKdwG4FZD6wStK0DnMSgOyx2ZKy6odYNyDbDxVZWBKQ0cAl4EVJpyqOp2nZyKn9MIDqXlO60Huw5GVQN0TomgUZSkb9nm9YViY2q+JIHyx6AfhZ0r+lh9Gi88B6SRsakKSWYfxW0vu9nPY6t51BnQQ8F1mu9eSpRFP2WBbjiK3oSVZQ6D5R0vU4uV8ZnwG+Azb3M2x1FJUyJoMo42/NeZvGR0YjpyPV+LNF4/+uA+j2WsnjILOTlDN4YdjlltdKVlICyr1h1gpSsSQ6M7e8u/IUegz4s7y7svqzzg81zOoEchflLmD7O1+wYQAAAABJRU5ErkJggg==) no-repeat center center;background-size:auto;background-size:25px 25px}\n.model-main .model-head{font-size:20px;padding:.6em 0;background:-webkit-gradient(linear,left top,left bottom,from(#fd7a71),to(#e5484c));background:-webkit-linear-gradient(top,#fd7a71,#e5484c);background:linear-gradient(to bottom,#fd7a71,#e5484c);border-radius:.1em .1em 0 0;position:relative}\n.model-main .model-head p{color:#fff}.model-main .model-head p:nth-child(1){font-size:20px;line-height:1.5;font-weight:bold}\n.model-main .model-head p:nth-child(2){font-size:16px;line-height:1.5}.model-main .model-body{padding:.5em;-webkit-box-sizing:border-box;box-sizing:border-box;min-height:5em;width:100%}\n.model-main .model-body img{margin-top:.1em;width:70%}.model-main .model-body p{color:#333;line-height:1.6;font-size:16px}")}
 
 
 
