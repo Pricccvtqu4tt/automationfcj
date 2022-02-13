@@ -7,6 +7,7 @@
 [![GitHub license](https://img.shields.io/github/license/logoove/weui?color=1)](https://github.com/logoove/weui/blob/master/LICENSE)
 
 WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个组件/插件,最目前全网效果最全的Mobile UI,可用于开发HTML5,公众号端.
+
 [![](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA-V5%2B%2B-1)](http://weui.shanliwawa.top)
 
 [![](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA-V4.9-1)](http://weui.shanliwawa.top/4.9)
