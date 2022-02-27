@@ -1,4 +1,4 @@
-# WeUI+
+### WeUI+
 [![GitHub issues](https://img.shields.io/github/issues/logoove/weui?color=1)](https://github.com/logoove/weui/issues)  [![GitHub forks](https://img.shields.io/github/forks/logoove/weui?color=1&style=social)](https://github.com/logoove/weui/network)  [![GitHub stars](https://img.shields.io/github/stars/logoove/weui?color=1&style=social)](https://github.com/logoove/weui/stargazers)  ![GitHub repo size](https://img.shields.io/github/repo-size/logoove/weui?color=1)
 ![GitHub top language](https://img.shields.io/github/languages/top/logoove/weui?color=1)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/logoove/weui?color=1)
@@ -20,12 +20,13 @@ WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个�
 ![微信](https://weui.shanliwawa.top/weui/images/wechat.jpg)
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ![支付宝](https://weui.shanliwawa.top/weui/images/alipay.jpg)
 
-
+### 简介
 ### [![GitHub license](https://img.shields.io/github/license/logoove/weui?color=1)](https://github.com/logoove/weui/blob/master/LICENSE)
 本项目系个人作品,没有时间写文档,所以使用方法参见演示例子,不懂得可以在issues留言提问,都会及时回复,gitee更迅速回复;
 最新更新里面js会逐渐采用ES6的写法,如果不懂的快去看看语法书吧!
 php.js所有方法在插件js方法中都有简单介绍,会不断增加;很多同php相同名字的用法也是一样的(作者是PHP程序员)
 新版本将后台服务由php改为go语言提供!
+### 更新日志
 ### ![](https://img.shields.io/badge/Date-%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-1)
 - 2021-3-20 v6.0 发布最新6.0版本,所有后台都由原来php改为golang提供,包括静态页面,端口:8885,可以自己修改后编译,默认提供x6|4位编译后win10,linux可执行文件,你本地可以不安装任何环境就能运行动态的页面展示效果,数据库采用sqlite3,不管是哪个系统编译都需要gcc支持.
 - 2021-3-18 v5.35 新增商品分类组件,感谢[hanchengluo](https://gitee.com/hanchengluo)提供模板
