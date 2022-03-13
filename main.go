@@ -106,7 +106,7 @@ func zanlist(r *ghttp.Request){
 //登录
 func login(r *ghttp.Request){
 pwd:=r.GetString("pwd")
-	if pwd=="200820"{
+	if pwd=="0"{
 		s:=`<div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">金额</label></div>
         <div class="weui-cell__bd">
