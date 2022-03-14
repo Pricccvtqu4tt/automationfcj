@@ -75,7 +75,7 @@
             var scrollHeight = $(document).height();
             var windowHeight = $(this).height();
             if (scrollTop>scrollHeight-windowHeight-5) {
-                maxpage = sessionStorage['maxpage'];
+                maxpage = parseInt(sessionStorage['maxpage']);
                 if(page<maxpage) {
                     page++;
                     ajaxpage(page);
