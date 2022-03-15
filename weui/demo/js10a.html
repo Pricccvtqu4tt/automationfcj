@@ -11,14 +11,15 @@
     <script src="../js/zepto.weui.js"></script>
     <script src="../js/php.js"></script>
     <script>
-        $(function(){
+        $(function(){   
             $('#t1').tab({
                 defaultIndex: 0,
                 activeClass: 'tab-green',
                 onToggle: function (index) {
                     $("#rank-list").html('');
+                    page=1
                     ajaxpage(1,index+1);
-                    var type = sessionStorage.setItem('type',index+1);
+                    var type = sessionStorage.setItem('type',index+1);                
                 }
             })
 
@@ -99,8 +100,12 @@
                 if(page<maxpage) {
                     page++;
                     ajaxpage(page,type);
+                    console.log(page,maxpage)
                 }else{
-                    $("#more").html("没有更多数据了");return false;
+					console.log(page,maxpage)
+					
+                    $("#more").html("没有更多数据了");
+                 
                 }
             }
 
