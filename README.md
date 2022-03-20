@@ -23,10 +23,6 @@ WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个�
 ### 简介
 [![GitHub license](https://img.shields.io/github/license/logoove/weui?color=1)](https://github.com/logoove/weui/blob/master/LICENSE)
 本项目系个人作品,没有时间写文档,所以使用方法参见演示例子,不懂得可以在issues留言提问,都会及时回复,gitee更迅速回复;
-
-### go编译后台注意
-本项目不含cgo,所以可以跨平台编译,开发使用gf框架+数据sqlite3,go版本>=1.16.
-
 ### 更新日志
 ![](https://img.shields.io/badge/Date-%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-1)
 - 2021-5-30 v6.06 修复分页中计算数组或对象长度使用count,否则可能导致分页错误,length属性可以计算数组不能计算对象.
