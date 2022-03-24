@@ -17,8 +17,8 @@ WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个�
 [![](https://img.shields.io/badge/gitee-https%3A%2F%2Fgitee.com%2Fyoby%2Fweui-1)](https://gitee.com/yoby/weui)
 ![](https://img.shields.io/badge/%E8%B5%9E%E5%8A%A9%E6%88%91-%E6%84%9F%E8%B0%A2%E6%AF%8F%E4%BD%8D%E8%B5%9E%E5%8A%A9%E5%92%8C%E5%85%B3%E6%B3%A8%E7%94%A8%E6%88%B7-1)
 赞助者可以留下姓名,网站,在演示页面会给予展示,金额需要>=1元,框架的正常发展离不开用户的支持!!!
-![微信](https://weui.shanliwawa.top/weui/images/wechat.jpg)
-                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ![支付宝](https://weui.shanliwawa.top/weui/images/alipay.jpg)
+![wx](https://weui.shanliwawa.top/weui/images/wechat.jpg)
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ![zfb](https://weui.shanliwawa.top/weui/images/alipay.jpg)
 
 ### 简介
 [![GitHub license](https://img.shields.io/github/license/logoove/weui?color=1)](https://github.com/logoove/weui/blob/master/LICENSE)
