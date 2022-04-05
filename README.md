@@ -6,7 +6,6 @@ WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个�
 ![微信](https://weui.shanliwawa.top/weui/images/wechat.jpg)
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ![支付宝](https://weui.shanliwawa.top/weui/images/alipay.jpg)
 ### 更新日志
-![](https://img.shields.io/badge/Date-%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-1)
 - 2021-6-7 v6.07 修复验证码可能导致在小内存机器上内存崩溃闪退程序.
 - 2021-5-30 v6.06 修复分页中计算数组或对象长度使用count,否则可能导致分页错误,length属性可以计算数组不能计算对象.
 - 2021-5-24 v6.05 修改分页中一些逻辑,错误,以及优化.
@@ -44,7 +43,7 @@ WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个�
 - 2019-3-10 v5.11 加入data插件到zepto核心,加入fn.php文件
 - 2018-12-20 v5.1 正式版发布,关于jssdk关闭演示上传,与上传有关的全部关闭,节省服务器资源;php文件夹下面db.php和fn.php是配置数据库与jssdk后端;
 - 2018-12-18 新增头像认证,折叠面板,角标
-- 2018-12-06 新增jssdk1.4相关演示包含获取openid,oauth2授权,相册,图片上传想下载,地址位置等含php代码;普通图片上传lrz插件和相关演示;新增音频播放;ajax分页样式2种和效果;留言列表;新闻列表仿今日头条;新版公众号文章样式,新增优秀音乐和视频播放器Dplayer/Aplayer,侧边栏,今日头条导航;
+- 2018-12-06 新增jssdk1.4相关演示包含获取openid,oauth2授权,相册,图片上传想下载,地址位置等含php代码;普通图片上传lrz插件和相关演示;新增音频播放;ajax分页样式2种和效果;留言列表;新闻列表仿今日头条;新版文章样式,新增优秀音乐和视频播放器Dplayer/Aplayer,侧边栏,今日头条导航;
 - 2018-12-01 v5.02 解决select和picker冲突
 - 2018-10-24 v5.01  这是一次全新的重构,新增和去掉一些不常用插件,每天更新一点点正式版v5.0将在12月发布,测试版v5.01将于10月24日发布
 - 2018-5-24 v4.9.2 修复bug,新增图片横排1,2,3张图片效果,无任何css改变,所以无需更新css
