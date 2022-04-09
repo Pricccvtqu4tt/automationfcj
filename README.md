@@ -1,10 +1,6 @@
 ### WeUI+
 WeUI+基于Zepto1.2和weui1.13等众多开源项目参考而成的,接近100个组件/插件,最目前全网效果最全的MobileUI.
 
-### 赞助
-赞助者可以留下姓名,网站,在演示页面会给予展示,金额需要>=1元,框架的正常发展离不开用户的支持!!!
-![微信](https://weui.shanliwawa.top/weui/images/wechat.jpg)
-                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ![支付宝](https://weui.shanliwawa.top/weui/images/alipay.jpg)
 ### 更新日志
 - 2021-6-7 v6.07 修复验证码可能导致在小内存机器上内存崩溃闪退程序.
 - 2021-5-30 v6.06 修复分页中计算数组或对象长度使用count,否则可能导致分页错误,length属性可以计算数组不能计算对象.
