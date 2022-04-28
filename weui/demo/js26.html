@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/weuix.css"/>
     <script src="../js/zepto.min.js"></script>
     <script src="../js/zepto.weui.js"></script>
+    <script src="../js/countUp.min.js"></script>
 </head>
 
 <body ontouchstart>
@@ -26,7 +27,7 @@
             总用户量
         </div>
         <p class="weui-grid__label" id="n1">
-
+0
         </p>
     </a>
     <a href="javascript:;" class="grid bg-orange f-white bold" >
@@ -34,7 +35,7 @@
            拾人拾物
         </div>
         <p class="weui-grid__label" id="n2">
-
+0
         </p>
     </a>
     <a href="javascript:;" class="grid bg-blue f-white bold" >
@@ -42,7 +43,7 @@
             总浏览量
         </div>
         <p class="weui-grid__label" id="n3">
-
+0
         </p>
     </a>
     <a href="javascript:;" class="grid bg-red f-white bold" >
@@ -50,11 +51,11 @@
             今日浏览
         </div>
         <p class="weui-grid__label" id="n4">
-
+0
         </p>
     </a>
 </div>
-<script>
+ <script>
     let options= {
         useEasing: true, // 使用缓和
         useGrouping: true, // 使用分组(是否显示千位分隔符,一般为 true)
@@ -63,7 +64,7 @@
         prefix: '', // 字首(数字的前缀,根据需要可设为 $,¥,￥ 等)
         suffix: '' // 后缀(数字的后缀 ,根据需要可设为 元,个,美元 等)
     };
-    const countUp1 = new CountUp('n1',0, 5234,0,2,options).start();
+   const countUp1 = new CountUp('n1',0, 5234,0,2,options).start();
     const countUp2 = new CountUp('n2',0, 123,0,3).start();
     const countUp3 = new CountUp('n3',0, 1234,0,4).start();
     const countUp4 = new CountUp('n4',0, 12345,0,5).start();
